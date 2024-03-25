@@ -11,7 +11,30 @@ future I plan to develop this project, add levels, new combinations, and more.
 
 Software Requirements:
 
-- Language version: Java 8 or higher;
-- Build System: Maven;
-- Third-party libraries: not required, the standard library is sufficient;
-- Compiler: javac, which comes with the JDK.
+* Language version: Java 8 or higher;
+* Build System: Maven;
+* Third-party libraries: not required, the standard library is sufficient;
+* Compiler: javac, which comes with the JDK.
+
+Commands to run the project:
+
+```cmd
+- mvn clean
+- mvn compile
+- mvn package
+```
+
+Commands for building a project:
+
+```cmd
+- mvn install
+- cd target
+- java -jar project-8-1.0-SNAPSHOT.jar
+```
+
+Main links to parts of the project:
+
+* [Architecture description](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/blob/dev/docs/ArchitectureDescription.md?ref_type=heads)
+* [UML diagram](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/blob/dev/docs/ThreeInARowGameUML.png?ref_type=heads)
+* [Use case diagram](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/blob/dev/docs/UseCaseDiagram.png?ref_type=heads)
+* [Code](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/tree/dev/src/main/java?ref_type=heads)
