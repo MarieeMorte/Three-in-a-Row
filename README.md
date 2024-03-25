@@ -1,1 +1,1 @@
-Development of the Three-in-a-row Game
+Development of the Three-in-a-Row Game
