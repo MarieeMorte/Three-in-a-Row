@@ -1,1 +1,0 @@
-Development of the game "Three in a row"
