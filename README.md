@@ -11,7 +11,7 @@ future I plan to develop this project, add levels, new combinations, and more.
 
 Software Requirements:
 
-* Language version: Java 8 or higher;
+* Language version: Java 14 or higher;
 * Build System: Maven;
 * Third-party libraries: not required, the standard library is sufficient;
 * Compiler: javac, which comes with the JDK.
