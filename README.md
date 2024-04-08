@@ -12,7 +12,7 @@ future I plan to develop this project, add levels, new combinations, and more.
 Software Requirements:
 
 * Language version: Java 14 or higher;
-* Build System: Maven;
+* Build System: Maven 3.6.0 or higher;
 * Third-party libraries: not required, the standard library is sufficient;
 * Compiler: javac, which comes with the JDK.
 
