@@ -31,7 +31,8 @@ Commands for run a project:
 
 Main links to parts of the project:
 
-* [Architecture description](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/blob/dev/docs/ArchitectureDescription.md?ref_type=heads)
-* [UML diagram](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/blob/dev/docs/ThreeInARowGameUML.png?ref_type=heads)
-* [Use case diagram](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/blob/dev/docs/UseCaseDiagram.png?ref_type=heads)
-* [Code](https://gitlab.akhcheck.ru/tp2024-projects/project-8/-/tree/dev/src/main/java?ref_type=heads)
+* [Architecture description](./docs/ArchitectureDescription.md)
+* [UML diagram](./docs/ThreeInARowGameUML.png)
+* [Use case diagram](./docs/UseCaseDiagram.png)
+* [Code](./src/main/java)
+
