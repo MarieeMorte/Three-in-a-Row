@@ -16,18 +16,15 @@ Software Requirements:
 * Third-party libraries: not required, the standard library is sufficient;
 * Compiler: javac 14 or higher, which comes with the JDK 14 or higher.
 
-Commands to run the project:
+Commands to building the project:
 
 ```cmd
-- mvn clean
-- mvn compile
-- mvn package
+- mvn clean install
 ```
 
-Commands for building a project:
+Commands for run a project:
 
 ```cmd
-- mvn install
 - cd target
 - java -jar project-8-1.0-SNAPSHOT.jar
 ```
