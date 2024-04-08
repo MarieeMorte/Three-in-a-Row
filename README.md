@@ -14,7 +14,7 @@ Software Requirements:
 * Language version: Java 14 or higher;
 * Build System: Maven 3.6.0 or higher;
 * Third-party libraries: not required, the standard library is sufficient;
-* Compiler: javac, which comes with the JDK.
+* Compiler: javac 14 or higher, which comes with the JDK 14 or higher.
 
 Commands to run the project:
 
