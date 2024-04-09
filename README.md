@@ -42,7 +42,7 @@ future I plan to develop this project, add levels, new combinations, and more.
 ### Main links to parts of the project
 
 * [Architecture description](./docs/ArchitectureDescription.md)
-* [UML diagram](./docs/ThreeInARowGameUML.png)
+* [UML diagram](./docs/UML.png)
 * [Use case diagram](./docs/UseCaseDiagram.png)
 * [Code](./src/main/java)
 
