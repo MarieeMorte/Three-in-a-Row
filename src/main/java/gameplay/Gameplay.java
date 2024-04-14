@@ -34,7 +34,7 @@ public class Gameplay implements ActionListener {
         statusBar.setFont(statusBar.getFont().deriveFont(14.0f));
 
         JFrame frame = new JFrame("Three-in-a-Row");
-        ImageIcon icon = new ImageIcon("icons/applicationIcon/applicationIcon.png");
+        ImageIcon icon = new ImageIcon("src/main/resources/icons/applicationIcon/applicationIcon.png");
         frame.setIconImage(icon.getImage());
 
         for (int i = 0; i < rowsNum; i++) {

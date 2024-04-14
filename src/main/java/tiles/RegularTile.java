@@ -14,12 +14,12 @@ public class RegularTile extends Tile {
         ImageIcon icon;
 
         switch (tileType) {
-            case BLUE -> icon = new ImageIcon("icons/unselectedTiles/blue.png");
-            case GREEN -> icon = new ImageIcon("icons/unselectedTiles/green.png");
-            case GRAY -> icon = new ImageIcon("icons/unselectedTiles/gray.png");
-            case INDIGO -> icon = new ImageIcon("icons/unselectedTiles/indigo.png");
-            case RED -> icon = new ImageIcon("icons/unselectedTiles/red.png");
-            default -> icon = new ImageIcon("icons/unselectedTiles/yellow.png");
+            case BLUE -> icon = new ImageIcon("src/main/resources/icons/unselectedTiles/blue.png");
+            case GREEN -> icon = new ImageIcon("src/main/resources/icons/unselectedTiles/green.png");
+            case GRAY -> icon = new ImageIcon("src/main/resources/icons/unselectedTiles/gray.png");
+            case INDIGO -> icon = new ImageIcon("src/main/resources/icons/unselectedTiles/indigo.png");
+            case RED -> icon = new ImageIcon("src/main/resources/icons/unselectedTiles/red.png");
+            default -> icon = new ImageIcon("src/main/resources/icons/unselectedTiles/yellow.png");
         }
 
         return icon;
@@ -31,12 +31,12 @@ public class RegularTile extends Tile {
         ImageIcon icon;
 
         switch (tileType) {
-            case BLUE -> icon = new ImageIcon("icons/selectedTiles/blue.png");
-            case GREEN -> icon = new ImageIcon("icons/selectedTiles/green.png");
-            case GRAY -> icon = new ImageIcon("icons/selectedTiles/gray.png");
-            case INDIGO -> icon = new ImageIcon("icons/selectedTiles/indigo.png");
-            case RED -> icon = new ImageIcon("icons/selectedTiles/red.png");
-            default -> icon = new ImageIcon("icons/selectedTiles/yellow.png");
+            case BLUE -> icon = new ImageIcon("src/main/resources/icons/selectedTiles/blue.png");
+            case GREEN -> icon = new ImageIcon("src/main/resources/icons/selectedTiles/green.png");
+            case GRAY -> icon = new ImageIcon("src/main/resources/icons/selectedTiles/gray.png");
+            case INDIGO -> icon = new ImageIcon("src/main/resources/icons/selectedTiles/indigo.png");
+            case RED -> icon = new ImageIcon("src/main/resources/icons/selectedTiles/red.png");
+            default -> icon = new ImageIcon("src/main/resources/icons/selectedTiles/yellow.png");
         }
 
         return icon;

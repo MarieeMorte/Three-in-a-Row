@@ -22,11 +22,11 @@ public class MissingTile extends Tile {
 
     @Override
     public ImageIcon getUnselectedTileIcon() {
-        return new ImageIcon("icons/unselectedTiles/missing.png");
+        return new ImageIcon("src/main/resources/icons/unselectedTiles/missing.png");
     }
 
     @Override
     public ImageIcon getSelectedTileIcon() {
-        return new ImageIcon("icons/unselectedTiles/missing.png");
+        return new ImageIcon("src/main/resources/icons/unselectedTiles/missing.png");
     }
 }
