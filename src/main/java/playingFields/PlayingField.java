@@ -31,8 +31,12 @@ public abstract class PlayingField {
 
     public abstract int getColumnsNum();
 
-    public ImageIcon getTileIcon(int rowNum, int columnNum) {
-        return playingField[rowNum][columnNum].getTileIcon();
+    public ImageIcon getUnselectedTileIcon(int rowNum, int columnNum) {
+        return playingField[rowNum][columnNum].getUnselectedTileIcon();
+    }
+
+    public ImageIcon getSelectedTileIcon(int rowNum, int columnNum) {
+        return playingField[rowNum][columnNum].getSelectedTileIcon();
     }
 
     protected void primaryFillingOfPlayingField() {

@@ -34,14 +34,14 @@ public class Gameplay implements ActionListener {
         statusBar.setFont(statusBar.getFont().deriveFont(14.0f));
 
         JFrame frame = new JFrame("Three-in-a-row");
-        ImageIcon icon = new ImageIcon("icons/icon.png");
+        ImageIcon icon = new ImageIcon("icons/applicationIcon/applicationIcon.png");
         frame.setIconImage(icon.getImage());
 
         for (int i = 0; i < rowsNum; i++) {
             for (int j = 0; j < columnsNum; j++) {
                 playingFieldButtons[i][j] = new JButton();
 
-                playingFieldButtons[i][j].setIcon(playingField.getTileIcon(rowsNum - i, j + 1));
+                playingFieldButtons[i][j].setIcon(playingField.getUnselectedTileIcon(rowsNum - i, j + 1));
 
                 playingFieldButtons[i][j].setFont(new Font("Monospaced", Font.PLAIN, 14));
                 playingFieldButtons[i][j].setActionCommand(i + " " + j);
@@ -113,7 +113,7 @@ public class Gameplay implements ActionListener {
     public void redrawPlayingField() {
         for (int i = 0; i < rowsNum; i++) {
             for (int j = 0; j < columnsNum; j++) {
-                playingFieldButtons[i][j].setIcon(playingField.getTileIcon(rowsNum - i, j + 1));
+                playingFieldButtons[i][j].setIcon(playingField.getUnselectedTileIcon(rowsNum - i, j + 1));
             }
         }
     }
@@ -121,6 +121,7 @@ public class Gameplay implements ActionListener {
     public void swap(int rowNum, int columnNum) {
         if (!hasSelectedTile) {
             hasSelectedTile = true;
+            playingFieldButtons[rowNum][columnNum].setIcon(playingField.getField()[rowsNum - rowNum][columnNum + 1].getSelectedTileIcon());
             selectedRowNum = rowNum;
             selectedColumnNum = columnNum;
             return;
@@ -128,6 +129,7 @@ public class Gameplay implements ActionListener {
 
         if (selectedRowNum == rowNum && selectedColumnNum == columnNum) {
             hasSelectedTile = false;
+            playingFieldButtons[rowNum][columnNum].setIcon(playingField.getField()[rowsNum - rowNum][columnNum + 1].getUnselectedTileIcon());
             selectedRowNum = -1;
             selectedColumnNum = -1;
             return;
@@ -136,6 +138,7 @@ public class Gameplay implements ActionListener {
         if (Math.abs(selectedRowNum - rowNum) + Math.abs(selectedColumnNum - columnNum) != 1) {
             setStatus("Tiles cannot be swapped, try again!");
             hasSelectedTile = false;
+            playingFieldButtons[selectedRowNum][selectedColumnNum].setIcon(playingField.getField()[rowsNum - rowNum][columnNum + 1].getUnselectedTileIcon());
             selectedRowNum = -1;
             selectedColumnNum = -1;
             return;
@@ -143,9 +146,9 @@ public class Gameplay implements ActionListener {
 
         playingField.swap(playingField.getField()[rowsNum - selectedRowNum][selectedColumnNum + 1],
                 playingField.getField()[rowsNum - rowNum][columnNum + 1]);
-        redrawPlayingField();
-
         if (playingField.hasReadyCombinations()) {
+            redrawPlayingField();
+
             while (playingField.hasReadyCombinations()) {
                 score += playingField.deleteReadyCombinations();
                 setStatus("Your score: " + score);

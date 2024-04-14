@@ -17,7 +17,9 @@ public abstract class Tile {
         this.tileType = tileType;
     }
 
-    public abstract ImageIcon getTileIcon();
+    public abstract ImageIcon getUnselectedTileIcon();
+
+    public abstract ImageIcon getSelectedTileIcon();
 
     public TileCoordinates getTileCoordinates() {
         return tileCoordinates;
