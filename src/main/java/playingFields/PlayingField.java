@@ -2,6 +2,7 @@ package playingFields;
 
 import tiles.*;
 
+import javax.swing.*;
 import java.util.Random;
 
 public abstract class PlayingField {
@@ -30,6 +31,10 @@ public abstract class PlayingField {
 
     public abstract int getColumnsNum();
 
+    public ImageIcon getTileIcon(int rowNum, int columnNum) {
+        return playingField[rowNum][columnNum].getTileIcon();
+    }
+
     protected void primaryFillingOfPlayingField() {
         int rowsNum = getRowsNum();
         int columnsNum = getColumnsNum();
@@ -49,27 +54,18 @@ public abstract class PlayingField {
 
     protected RegularTileTypes randomColor() {
         int randomNum = random.nextInt(COLORS_NUM);
+        RegularTileTypes tileType;
 
         switch (randomNum) {
-            case (0) -> {
-                return RegularTileTypes.BLUE;
-            }
-            case (1) -> {
-                return RegularTileTypes.GREEN;
-            }
-            case (2) -> {
-                return RegularTileTypes.GREY;
-            }
-            case (3) -> {
-                return RegularTileTypes.INDIGO;
-            }
-            case (4) -> {
-                return RegularTileTypes.RED;
-            }
-            default -> {
-                return RegularTileTypes.YELLOW;
-            }
+            case (0) -> tileType = RegularTileTypes.BLUE;
+            case (1) -> tileType = RegularTileTypes.GREEN;
+            case (2) -> tileType = RegularTileTypes.GRAY;
+            case (3) -> tileType = RegularTileTypes.INDIGO;
+            case (4) -> tileType = RegularTileTypes.RED;
+            default -> tileType = RegularTileTypes.YELLOW;
         }
+
+        return tileType;
     }
 
     protected void fillingOfNeighbors() {
@@ -232,6 +228,4 @@ public abstract class PlayingField {
     public Tile[][] getField() {
         return playingField;
     }
-
-    public abstract void show() throws InterruptedException;
 }

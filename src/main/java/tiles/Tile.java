@@ -1,6 +1,7 @@
 package tiles;
 
-// An abstract class describing the tiles on the playing field
+import javax.swing.*;
+
 public abstract class Tile {
     private TileCoordinates tileCoordinates;
     private TileNeighbors tileNeighbors;
@@ -15,6 +16,8 @@ public abstract class Tile {
         this.tileNeighbors = tileNeighbors;
         this.tileType = tileType;
     }
+
+    public abstract ImageIcon getTileIcon();
 
     public TileCoordinates getTileCoordinates() {
         return tileCoordinates;
@@ -60,6 +63,4 @@ public abstract class Tile {
         this.tileNeighbors.copyFrom(tile.tileNeighbors);
         tile.tileNeighbors.copyFrom(tempTileNeighbors);
     }
-
-    public abstract void show();
 }
