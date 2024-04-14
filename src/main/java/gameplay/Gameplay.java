@@ -24,16 +24,16 @@ public class Gameplay implements ActionListener {
         columnsNum = playingField.getColumnsNum();
 
         playingFieldButtons = new JButton[rowsNum][columnsNum];
-        JButton resetButton = new JButton("RESET");
-        JButton exitButton = new JButton("FINISH");
+        JButton resetButton = new JButton("CREATE NEW PLAYING FIELD");
+        JButton exitButton = new JButton("END GAME");
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JPanel playingFieldPanel = new JPanel(new GridLayout(rowsNum, columnsNum, 3, 3));
 
-        statusBar = new JLabel("Your score: " + score);
+        statusBar = new JLabel("Welcome to the Three-in-a-Row game!");
         statusBar.setFont(statusBar.getFont().deriveFont(14.0f));
 
-        JFrame frame = new JFrame("Three-in-a-row");
+        JFrame frame = new JFrame("Three-in-a-Row");
         ImageIcon icon = new ImageIcon("icons/applicationIcon/applicationIcon.png");
         frame.setIconImage(icon.getImage());
 
@@ -90,8 +90,11 @@ public class Gameplay implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         setStatus("Your score: " + score);
         switch (e.getActionCommand()) {
-            case "FINISH" -> System.exit(0);
-            case "RESET" -> reset();
+            case "CREATE NEW PLAYING FIELD" -> reset();
+            case "END GAME" -> {
+                setStatus("See you soon!");
+                System.exit(0);
+            }
             default -> {
                 String[] input = e.getActionCommand().split(" ");
                 int rowNum = Integer.parseInt(input[0]);
