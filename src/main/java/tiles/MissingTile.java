@@ -1,6 +1,6 @@
 package tiles;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
 public class MissingTile extends AbstractTile {
 
