@@ -1,6 +1,6 @@
 package tiles;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
 public abstract class AbstractTile {
     private TileCoordinates tileCoordinates;
@@ -42,13 +42,13 @@ public abstract class AbstractTile {
     }
 
     public boolean hasThreeInRow() {
-        return this.tileType == this.tileNeighbors.getLeft().getTileType() &&
-                this.tileType == this.tileNeighbors.getRight().getTileType();
+        return this.tileType == this.tileNeighbors.getLeft().getTileType()
+                && this.tileType == this.tileNeighbors.getRight().getTileType();
     }
 
     public boolean hasThreeInColumn() {
-        return this.tileType == this.tileNeighbors.getTop().getTileType() &&
-                this.tileType == this.tileNeighbors.getBottom().getTileType();
+        return this.tileType == this.tileNeighbors.getTop().getTileType()
+                && this.tileType == this.tileNeighbors.getBottom().getTileType();
     }
 
     public void replaceBy(AbstractTile replacementTile) {
