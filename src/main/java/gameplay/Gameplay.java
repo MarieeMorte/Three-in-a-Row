@@ -4,6 +4,7 @@ import playingFields.SimplestPlayingField;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 import javax.swing.*;
 
 public class Gameplay implements ActionListener {
@@ -34,7 +35,7 @@ public class Gameplay implements ActionListener {
         statusBar.setFont(statusBar.getFont().deriveFont(14.0f));
 
         JFrame frame = new JFrame("Three-in-a-Row");
-        ImageIcon icon = new ImageIcon("src/main/resources/icons/applicationIcon/applicationIcon.png");
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/applicationIcon/applicationIcon.png")));
         frame.setIconImage(icon.getImage());
 
         for (int i = 0; i < rowsNum; i++) {
