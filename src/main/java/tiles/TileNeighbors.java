@@ -1,10 +1,10 @@
 package tiles;
 
 public class TileNeighbors {
-    private Tile top;
-    private Tile left;
-    private Tile right;
-    private Tile bottom;
+    private AbstractTile top;
+    private AbstractTile left;
+    private AbstractTile right;
+    private AbstractTile bottom;
 
     public TileNeighbors() {
         top = new MissingTile(TileTypes.MISSING);
@@ -13,42 +13,42 @@ public class TileNeighbors {
         bottom = new MissingTile(TileTypes.MISSING);
     }
 
-    public TileNeighbors(Tile top, Tile left, Tile right, Tile bottom) {
+    public TileNeighbors(AbstractTile top, AbstractTile left, AbstractTile right, AbstractTile bottom) {
         this.top = top;
         this.left = left;
         this.right = right;
         this.bottom = bottom;
     }
 
-    public void setTop(Tile tile) {
+    public void setTop(AbstractTile tile) {
         top = tile;
     }
 
-    public Tile getTop() {
+    public AbstractTile getTop() {
         return top;
     }
 
-    public void setLeft(Tile tile) {
+    public void setLeft(AbstractTile tile) {
         left = tile;
     }
 
-    public Tile getLeft() {
+    public AbstractTile getLeft() {
         return left;
     }
 
-    public void setRight(Tile tile) {
+    public void setRight(AbstractTile tile) {
         right = tile;
     }
 
-    public Tile getRight() {
+    public AbstractTile getRight() {
         return right;
     }
 
-    public void setBottom(Tile tile) {
+    public void setBottom(AbstractTile tile) {
         bottom = tile;
     }
 
-    public Tile getBottom() {
+    public AbstractTile getBottom() {
         return bottom;
     }
 

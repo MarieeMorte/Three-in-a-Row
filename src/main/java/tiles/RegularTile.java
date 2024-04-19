@@ -3,7 +3,7 @@ package tiles;
 import javax.swing.*;
 import java.util.Objects;
 
-public class RegularTile extends Tile {
+public class RegularTile extends AbstractTile {
 
     public RegularTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, RegularTileTypes tileType) {
         super(tileCoordinates, tileNeighbors, tileType.getTileType());

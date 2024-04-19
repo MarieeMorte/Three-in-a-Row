@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import playingFields.SimplestPlayingField;
+import playingfields.SimplestPlayingField;
 
 public class Gameplay implements ActionListener {
     private static SimplestPlayingField playingField;
@@ -53,7 +53,8 @@ public class Gameplay implements ActionListener {
             for (int j = 0; j < columnsNum; j++) {
                 playingFieldButtons[i][j] = new JButton();
 
-                playingFieldButtons[i][j].setIcon(playingField.getUnselectedTileIcon(rowsNum - i, j + 1));
+                playingFieldButtons[i][j].setIcon(
+                        playingField.getUnselectedTileIcon(rowsNum - i, j + 1));
 
                 playingFieldButtons[i][j].setFont(new Font("Monospaced", Font.PLAIN, 14));
                 playingFieldButtons[i][j].setActionCommand(i + " " + j);

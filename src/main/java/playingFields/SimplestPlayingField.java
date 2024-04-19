@@ -1,6 +1,6 @@
-package playingFields;
+package playingfields;
 
-public class SimplestPlayingField extends PlayingField {
+public class SimplestPlayingField extends AbstractPlayingField {
 
     @Override
     public int getRowsNum() {

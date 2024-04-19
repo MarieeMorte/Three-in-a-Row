@@ -1,21 +1,26 @@
-package playingFields;
+package playingfields;
 
-import tiles.*;
-
-import javax.swing.*;
 import java.util.Random;
+import javax.swing.ImageIcon;
+import tiles.AbstractTile;
+import tiles.MissingTile;
+import tiles.RegularTile;
+import tiles.RegularTileTypes;
+import tiles.TileCoordinates;
+import tiles.TileNeighbors;
+import tiles.TileTypes;
 
-public abstract class PlayingField {
+public abstract class AbstractPlayingField {
     protected static Random random;
     protected static final int COLORS_NUM = 6;
-    protected Tile[][] playingField;
+    protected AbstractTile[][] playingField;
 
-    public PlayingField() {
+    public AbstractPlayingField() {
         random = new Random();
 
         int rowsNum = getRowsNum();
         int columnsNum = getColumnsNum();
-        playingField = new Tile[rowsNum + 2][columnsNum + 2];
+        playingField = new AbstractTile[rowsNum + 2][columnsNum + 2];
 
         primaryFillingOfPlayingField();
         fillingOfNeighbors();
@@ -33,10 +38,6 @@ public abstract class PlayingField {
 
     public ImageIcon getUnselectedTileIcon(int rowNum, int columnNum) {
         return playingField[rowNum][columnNum].getUnselectedTileIcon();
-    }
-
-    public ImageIcon getSelectedTileIcon(int rowNum, int columnNum) {
-        return playingField[rowNum][columnNum].getSelectedTileIcon();
     }
 
     protected void primaryFillingOfPlayingField() {
@@ -58,18 +59,15 @@ public abstract class PlayingField {
 
     protected RegularTileTypes randomColor() {
         int randomNum = random.nextInt(COLORS_NUM);
-        RegularTileTypes tileType;
 
-        switch (randomNum) {
-            case (0) -> tileType = RegularTileTypes.BLUE;
-            case (1) -> tileType = RegularTileTypes.GREEN;
-            case (2) -> tileType = RegularTileTypes.GRAY;
-            case (3) -> tileType = RegularTileTypes.INDIGO;
-            case (4) -> tileType = RegularTileTypes.RED;
-            default -> tileType = RegularTileTypes.YELLOW;
-        }
-
-        return tileType;
+        return switch (randomNum) {
+            case 0 -> RegularTileTypes.BLUE;
+            case 1 -> RegularTileTypes.GREEN;
+            case 2 -> RegularTileTypes.GRAY;
+            case 3 -> RegularTileTypes.INDIGO;
+            case 4 -> RegularTileTypes.RED;
+            default -> RegularTileTypes.YELLOW;
+        };
     }
 
     protected void fillingOfNeighbors() {
@@ -90,7 +88,7 @@ public abstract class PlayingField {
 
         for (int i = 1; i < rowsNum + 1; i++) {
             for (int j = 1; j < columnsNum + 1; j++) {
-                Tile tile = playingField[i][j];
+                AbstractTile tile = playingField[i][j];
                 if (tile instanceof RegularTile && tile.hasReadyCombination()) {
                     return true;
                 }
@@ -119,7 +117,7 @@ public abstract class PlayingField {
     }
 
     protected void deleteThreeInRow(int i, int j) {
-        Tile tile = playingField[i][j];
+        AbstractTile tile = playingField[i][j];
         if (tile instanceof RegularTile && tile.hasThreeInRow()) {
             replaceTile(playingField[i][j - 1], new MissingTile(TileTypes.MISSING));
             replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
@@ -127,12 +125,12 @@ public abstract class PlayingField {
         }
     }
 
-    protected void replaceTile(Tile replaceableTile, Tile replacementTile) {
+    protected void replaceTile(AbstractTile replaceableTile, AbstractTile replacementTile) {
         replaceableTile.replaceBy(replacementTile);
         newTile(replacementTile);
     }
 
-    protected void newTile(Tile tile) {
+    protected void newTile(AbstractTile tile) {
         int rowNum = tile.getTileCoordinates().getRowNum();
         int columnNum = tile.getTileCoordinates().getColumnNum();
 
@@ -144,7 +142,7 @@ public abstract class PlayingField {
     }
 
     protected void deleteThreeInColumn(int i, int j) {
-        Tile tile = playingField[i][j];
+        AbstractTile tile = playingField[i][j];
         if (tile instanceof RegularTile && tile.hasThreeInColumn()) {
             replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
             replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
@@ -171,8 +169,8 @@ public abstract class PlayingField {
 
         for (int i = 2; i < rowsNum + 1; i++) {
             for (int j = 1; j < columnsNum + 1; j++) {
-                if (playingField[i][j].getTileType() != TileTypes.MISSING &&
-                        playingField[i - 1][j].getTileType() == TileTypes.MISSING) {
+                if (playingField[i][j].getTileType() != TileTypes.MISSING
+                        && playingField[i - 1][j].getTileType() == TileTypes.MISSING) {
                     return true;
                 }
             }
@@ -181,13 +179,13 @@ public abstract class PlayingField {
     }
 
     protected void forceOfGravityForOneTile(int i, int j) {
-        if (playingField[i][j].getTileType() != TileTypes.MISSING &&
-                playingField[i - 1][j].getTileType() == TileTypes.MISSING) {
+        if (playingField[i][j].getTileType() != TileTypes.MISSING
+                && playingField[i - 1][j].getTileType() == TileTypes.MISSING) {
             swap(playingField[i][j], playingField[i - 1][j]);
         }
     }
 
-    public void swap(Tile firstTile, Tile secondTile) {
+    public void swap(AbstractTile firstTile, AbstractTile secondTile) {
         int firstTileRowNum = firstTile.getTileCoordinates().getRowNum();
         int firstTileColumnNum = firstTile.getTileCoordinates().getColumnNum();
 
@@ -220,7 +218,7 @@ public abstract class PlayingField {
         for (int i = 1; i < rowsNum + 1; i++) {
             for (int j = 1; j < columnsNum + 1; j++) {
                 if (playingField[i][j].getTileType() == TileTypes.MISSING) {
-                    Tile tile = new RegularTile(new TileCoordinates(i, j),
+                    AbstractTile tile = new RegularTile(new TileCoordinates(i, j),
                             new TileNeighbors(playingField[i + 1][j], playingField[i][j - 1], playingField[i][j + 1],
                                     playingField[i - 1][j]), randomColor());
                     newTile(tile);
@@ -229,7 +227,7 @@ public abstract class PlayingField {
         }
     }
 
-    public Tile[][] getField() {
+    public AbstractTile[][] getField() {
         return playingField;
     }
 }

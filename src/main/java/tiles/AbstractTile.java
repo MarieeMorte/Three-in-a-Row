@@ -2,16 +2,16 @@ package tiles;
 
 import javax.swing.*;
 
-public abstract class Tile {
+public abstract class AbstractTile {
     private TileCoordinates tileCoordinates;
     private TileNeighbors tileNeighbors;
     private final TileTypes tileType;
 
-    public Tile(TileTypes tileType) {
+    public AbstractTile(TileTypes tileType) {
         this.tileType = tileType;
     }
 
-    public Tile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
+    public AbstractTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
         this.tileCoordinates = tileCoordinates;
         this.tileNeighbors = tileNeighbors;
         this.tileType = tileType;
@@ -25,7 +25,7 @@ public abstract class Tile {
         return tileCoordinates;
     }
 
-    public void setTileNeighbors(Tile top, Tile left, Tile right, Tile bottom) {
+    public void setTileNeighbors(AbstractTile top, AbstractTile left, AbstractTile right, AbstractTile bottom) {
         tileNeighbors = new TileNeighbors(top, left, right, bottom);
     }
 
@@ -51,12 +51,12 @@ public abstract class Tile {
                 this.tileType == this.tileNeighbors.getBottom().getTileType();
     }
 
-    public void replaceBy(Tile replacementTile) {
+    public void replaceBy(AbstractTile replacementTile) {
         replacementTile.tileCoordinates = tileCoordinates.copyTo();
         replacementTile.tileNeighbors = tileNeighbors.copyTo();
     }
 
-    public void swap(Tile tile) {
+    public void swap(AbstractTile tile) {
         TileCoordinates tempTileCoordinates = this.tileCoordinates.copyTo();
         this.tileCoordinates.copyFrom(tile.tileCoordinates);
         tile.tileCoordinates.copyFrom(tempTileCoordinates);

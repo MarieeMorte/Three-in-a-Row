@@ -2,7 +2,7 @@ package tiles;
 
 import javax.swing.*;
 
-public class MissingTile extends Tile {
+public class MissingTile extends AbstractTile {
 
     public MissingTile(TileTypes tileType) {
         super(tileType);
