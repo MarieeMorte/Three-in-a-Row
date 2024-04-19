@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import playingfields.SimplestPlayingField;
 
 public class Gameplay implements ActionListener {
@@ -173,8 +174,10 @@ public class Gameplay implements ActionListener {
                 setStatus("Your score: " + score);
                 redrawPlayingField();
 
-                playingField.forceOfGravity();
-                redrawPlayingField();
+                while (playingField.hasHangingTiles()) {
+                    playingField.forceOfGravity();
+                    redrawPlayingField();
+                }
 
                 playingField.secondaryFillingOfPlayingField();
                 redrawPlayingField();

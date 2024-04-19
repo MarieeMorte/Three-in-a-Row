@@ -4,7 +4,6 @@ import java.util.Objects;
 import javax.swing.ImageIcon;
 
 public class RegularTile extends AbstractTile {
-
     public RegularTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, RegularTileTypes tileType) {
         super(tileCoordinates, tileNeighbors, tileType.getTileType());
     }
