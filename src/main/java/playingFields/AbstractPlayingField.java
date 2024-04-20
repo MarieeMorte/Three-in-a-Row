@@ -2,7 +2,6 @@ package playingfields;
 
 import java.util.Random;
 import javax.swing.ImageIcon;
-
 import tiles.AbstractTile;
 import tiles.MissingTile;
 import tiles.RegularTile;

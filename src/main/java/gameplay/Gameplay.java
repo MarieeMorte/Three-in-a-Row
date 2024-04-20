@@ -9,8 +9,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
-import javax.swing.*;
-
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import playingfields.SimplestPlayingField;
 
 public class Gameplay implements ActionListener {
@@ -25,33 +29,6 @@ public class Gameplay implements ActionListener {
     private static boolean hasSelectedTile = false;
     private static final int DELAY = 500;
     private static final int MAGNIFICATION_FACTOR = 100;
-
-    public static class GameplaySwingWorker extends SwingWorker<Void, Void> {
-        @Override
-        protected Void doInBackground() throws Exception {
-            redrawPlayingField();
-            Thread.sleep(DELAY);
-
-            while (playingField.hasReadyCombinations()) {
-                score += playingField.deleteReadyCombinations();
-                setStatus("Your score: " + score);
-                redrawPlayingField();
-                Thread.sleep(DELAY);
-
-                while (playingField.hasHangingTiles()) {
-                    playingField.forceOfGravity();
-                    redrawPlayingField();
-                    Thread.sleep(DELAY);
-                }
-
-                playingField.secondaryFillingOfPlayingField();
-                redrawPlayingField();
-                Thread.sleep(DELAY);
-
-            }
-            return null;
-        }
-    }
 
     public Gameplay() {
         playingField = new SimplestPlayingField();
@@ -207,5 +184,36 @@ public class Gameplay implements ActionListener {
 
     public static void main(String[] args) {
         new Gameplay();
+    }
+
+    public static class GameplaySwingWorker extends SwingWorker<Void, Void> {
+        GameplaySwingWorker() {
+            super();
+        }
+
+        @Override
+        protected Void doInBackground() throws Exception {
+            redrawPlayingField();
+            Thread.sleep(DELAY);
+
+            while (playingField.hasReadyCombinations()) {
+                score += playingField.deleteReadyCombinations();
+                setStatus("Your score: " + score);
+                redrawPlayingField();
+                Thread.sleep(DELAY);
+
+                while (playingField.hasHangingTiles()) {
+                    playingField.forceOfGravity();
+                    redrawPlayingField();
+                    Thread.sleep(DELAY);
+                }
+
+                playingField.secondaryFillingOfPlayingField();
+                redrawPlayingField();
+                Thread.sleep(DELAY);
+
+            }
+            return null;
+        }
     }
 }
