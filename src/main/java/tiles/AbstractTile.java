@@ -29,10 +29,6 @@ public abstract class AbstractTile {
         tileNeighbors = new TileNeighbors(top, left, right, bottom);
     }
 
-    public TileNeighbors getTileNeighbors() {
-        return tileNeighbors;
-    }
-
     public TileTypes getTileType() {
         return tileType;
     }

@@ -20,32 +20,16 @@ public class TileNeighbors {
         this.bottom = bottom;
     }
 
-    public void setTop(AbstractTile tile) {
-        top = tile;
-    }
-
     public AbstractTile getTop() {
         return top;
-    }
-
-    public void setLeft(AbstractTile tile) {
-        left = tile;
     }
 
     public AbstractTile getLeft() {
         return left;
     }
 
-    public void setRight(AbstractTile tile) {
-        right = tile;
-    }
-
     public AbstractTile getRight() {
         return right;
-    }
-
-    public void setBottom(AbstractTile tile) {
-        bottom = tile;
     }
 
     public AbstractTile getBottom() {
