@@ -9,16 +9,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import playingfields.SimplestPlayingField;
 
 public class Gameplay implements ActionListener {
-    private static SimplestPlayingField playingField;
+    static SimplestPlayingField playingField;
     private static int rowsNum;
     private static int columnsNum;
     private static int score = 0;
@@ -27,7 +23,35 @@ public class Gameplay implements ActionListener {
     private static JButton[][] playingFieldButtons;
     private static JLabel statusBar;
     private static boolean hasSelectedTile = false;
+    private static final int DELAY = 500;
     private static final int MAGNIFICATION_FACTOR = 100;
+
+    public static class GameplaySwingWorker extends SwingWorker<Void, Void> {
+        @Override
+        protected Void doInBackground() throws Exception {
+            redrawPlayingField();
+            Thread.sleep(DELAY);
+
+            while (playingField.hasReadyCombinations()) {
+                score += playingField.deleteReadyCombinations();
+                setStatus("Your score: " + score);
+                redrawPlayingField();
+                Thread.sleep(DELAY);
+
+                while (playingField.hasHangingTiles()) {
+                    playingField.forceOfGravity();
+                    redrawPlayingField();
+                    Thread.sleep(DELAY);
+                }
+
+                playingField.secondaryFillingOfPlayingField();
+                redrawPlayingField();
+                Thread.sleep(DELAY);
+
+            }
+            return null;
+        }
+    }
 
     public Gameplay() {
         playingField = new SimplestPlayingField();
@@ -118,7 +142,7 @@ public class Gameplay implements ActionListener {
         }
     }
 
-    public void setStatus(String string) {
+    public static void setStatus(String string) {
         statusBar.setText(string);
     }
 
@@ -127,7 +151,7 @@ public class Gameplay implements ActionListener {
         redrawPlayingField();
     }
 
-    public void redrawPlayingField() {
+    public static void redrawPlayingField() {
         for (int i = 0; i < rowsNum; i++) {
             for (int j = 0; j < columnsNum; j++) {
                 playingFieldButtons[i][j].setIcon(playingField.getUnselectedTileIcon(rowsNum - i, j + 1));
@@ -167,21 +191,8 @@ public class Gameplay implements ActionListener {
         playingField.swap(playingField.getField()[rowsNum - selectedRowNum][selectedColumnNum + 1],
                 playingField.getField()[rowsNum - rowNum][columnNum + 1]);
         if (playingField.hasReadyCombinations()) {
-            redrawPlayingField();
-
-            while (playingField.hasReadyCombinations()) {
-                score += playingField.deleteReadyCombinations();
-                setStatus("Your score: " + score);
-                redrawPlayingField();
-
-                while (playingField.hasHangingTiles()) {
-                    playingField.forceOfGravity();
-                    redrawPlayingField();
-                }
-
-                playingField.secondaryFillingOfPlayingField();
-                redrawPlayingField();
-            }
+            GameplaySwingWorker gameSwingWorker = new GameplaySwingWorker();
+            gameSwingWorker.execute();
         } else {
             playingField.swap(playingField.getField()[rowsNum - selectedRowNum][selectedColumnNum + 1],
                     playingField.getField()[rowsNum - rowNum][columnNum + 1]);
