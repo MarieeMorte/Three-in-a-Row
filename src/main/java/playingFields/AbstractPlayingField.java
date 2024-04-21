@@ -40,6 +40,10 @@ public abstract class AbstractPlayingField {
 
     public abstract int getColumnsNum();
 
+    public AbstractTile[][] getField() {
+        return playingField;
+    }
+
     public ImageIcon getUnselectedTileIcon(int rowNum, int columnNum) {
         return playingField[rowNum][columnNum].getUnselectedTileIcon();
     }
@@ -202,19 +206,43 @@ public abstract class AbstractPlayingField {
 
         for (int i = 1; i < rowsNum + 1; i++) {
             for (int j = 1; j < columnsNum + 1; j++) {
-                if (playingField[i][j].getTileType() == TileTypes.MISSING) {
-                    AbstractTile tile = new RegularTile(new TileCoordinates(i, j),
-                            new TileNeighbors(playingField[i + 1][j], playingField[i][j - 1], playingField[i][j + 1],
-                                    playingField[i - 1][j]), randomColor());
-                    playingField[i][j] = tile;
-                }
+                replaceMissingTile(i, j);
             }
         }
 
         fillingOfNeighbors();
     }
 
-    public AbstractTile[][] getField() {
-        return playingField;
+    private void replaceMissingTile(int rowNum, int columnNum) {
+        if (playingField[rowNum][columnNum].getTileType() == TileTypes.MISSING) {
+            AbstractTile tile = new RegularTile(new TileCoordinates(rowNum, columnNum),
+                    new TileNeighbors(playingField[rowNum + 1][columnNum], playingField[rowNum][columnNum - 1],
+                            playingField[rowNum][columnNum + 1], playingField[rowNum - 1][columnNum]), randomColor());
+            playingField[rowNum][columnNum] = tile;
+        }
+    }
+
+    public boolean hasMissingTiles() {
+        int rowsNum = getRowsNum();
+        int columnsNum = getColumnsNum();
+
+        for (int i = 1; i < columnsNum + 1; i++) {
+            if (playingField[rowsNum][i].getTileType() == TileTypes.MISSING) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void fillingInTopRow() {
+        int rowsNum = getRowsNum();
+        int columnsNum = getColumnsNum();
+
+        for (int i = 1; i < columnsNum + 1; i++) {
+            replaceMissingTile(rowsNum, i);
+        }
+
+        fillingOfNeighbors();
     }
 }

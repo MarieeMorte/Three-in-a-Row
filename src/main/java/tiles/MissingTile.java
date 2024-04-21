@@ -1,5 +1,6 @@
 package tiles;
 
+import java.util.Objects;
 import javax.swing.ImageIcon;
 
 public class MissingTile extends AbstractTile {
@@ -22,11 +23,13 @@ public class MissingTile extends AbstractTile {
 
     @Override
     public ImageIcon getUnselectedTileIcon() {
-        return new ImageIcon("src/main/resources/icons/unselectedTiles/missing.png");
+        return new ImageIcon(
+                Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/missing.png")));
     }
 
     @Override
     public ImageIcon getSelectedTileIcon() {
-        return new ImageIcon("src/main/resources/icons/unselectedTiles/missing.png");
+        return new ImageIcon(
+                Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/missing.png")));
     }
 }

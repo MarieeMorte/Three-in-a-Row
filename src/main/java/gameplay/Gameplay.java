@@ -27,8 +27,9 @@ public class Gameplay implements ActionListener {
     private static JButton[][] playingFieldButtons;
     private static JLabel statusBar;
     private static boolean hasSelectedTile = false;
-    private static final int DELAY = 500;
     private static final int MAGNIFICATION_FACTOR = 100;
+    private static final int SMALL_DELAY = 450;
+    private static final int BIG_DELAY = 500;
 
     public Gameplay() {
         playingField = new SimplestPlayingField();
@@ -194,26 +195,41 @@ public class Gameplay implements ActionListener {
         @Override
         protected Void doInBackground() throws Exception {
             redrawPlayingField();
-            Thread.sleep(DELAY);
+            Thread.sleep(BIG_DELAY);
 
-            while (playingField.hasReadyCombinations()) {
-                score += playingField.deleteReadyCombinations();
-                setStatus("Your score: " + score);
+            balance();
+
+            while (playingField.hasMissingTiles()) {
+                playingField.fillingInTopRow();
                 redrawPlayingField();
-                Thread.sleep(DELAY);
+                Thread.sleep(SMALL_DELAY);
 
                 while (playingField.hasHangingTiles()) {
                     playingField.forceOfGravity();
                     redrawPlayingField();
-                    Thread.sleep(DELAY);
+                    Thread.sleep(SMALL_DELAY);
                 }
 
-                playingField.secondaryFillingOfPlayingField();
-                redrawPlayingField();
-                Thread.sleep(DELAY);
-
+                balance();
             }
+
+            redrawPlayingField();
             return null;
+        }
+
+        private void balance() throws InterruptedException {
+            while (playingField.hasReadyCombinations()) {
+                score += playingField.deleteReadyCombinations();
+                setStatus("Your score: " + score);
+                redrawPlayingField();
+                Thread.sleep(BIG_DELAY);
+
+                while (playingField.hasHangingTiles()) {
+                    playingField.forceOfGravity();
+                    redrawPlayingField();
+                    Thread.sleep(SMALL_DELAY);
+                }
+            }
         }
     }
 }
