@@ -20,16 +20,8 @@ future I plan to develop this project, add levels, new combinations, and more.
 
 ### Commands to building the project
 
-##### If you agree to save this project to the local maven repository
-
 ```cmd
-mvn clean install
-```
-
-##### If you don't agree to save this project to the local maven repository
-
-```cmd
-mvn clean install -Dmaven.repo.local=path_directory_to_store_project_dependence
+mvn clean package
 ```
 
 ### Commands for run a project:
@@ -39,7 +31,7 @@ cd target
 java -jar project-8-1.0-SNAPSHOT.jar
 ```
 
-or
+#### or
 
 ```cmd
 java -jar target/project-8-1.0-SNAPSHOT.jar
