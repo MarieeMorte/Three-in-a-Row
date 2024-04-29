@@ -172,6 +172,8 @@ public abstract class AbstractPlayingField {
                         }
 
                         deleteThreeInColumn(i, j);
+                    } else {
+                        deleteFourInSquare(i, j);
                     }
 
                     count++;
@@ -201,6 +203,14 @@ public abstract class AbstractPlayingField {
         replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i - 1][j], new MissingTile(TileTypes.MISSING));
+        fillingOfNeighbors();
+    }
+
+    private void deleteFourInSquare(int i, int j) {
+        replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
+        replaceTile(playingField[i + 1][j + 1], new MissingTile(TileTypes.MISSING));
+        replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
+        replaceTile(playingField[i][j + 1], new MissingTile(TileTypes.MISSING));
         fillingOfNeighbors();
     }
 

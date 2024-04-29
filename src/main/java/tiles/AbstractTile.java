@@ -36,17 +36,22 @@ public abstract class AbstractTile {
     }
 
     public boolean hasReadyCombination() {
-        return hasThreeInRow() || hasThreeInColumn();
+        return hasThreeInRow() || hasThreeInColumn() || hasFourInSquare();
     }
 
     public boolean hasThreeInRow() {
         return this.tileType == this.tileNeighbors.getLeft().getTileType()
                 && this.tileType == this.tileNeighbors.getRight().getTileType();
     }
-
     public boolean hasThreeInColumn() {
         return this.tileType == this.tileNeighbors.getTop().getTileType()
                 && this.tileType == this.tileNeighbors.getBottom().getTileType();
+    }
+
+    public boolean hasFourInSquare() {
+        return this.tileType == this.tileNeighbors.getTop().getTileType()
+                && this.tileType == this.tileNeighbors.getTopRight().getTileType()
+                && this.tileType == this.tileNeighbors.getRight().getTileType();
     }
 
     public void replaceBy(AbstractTile replacementTile) {
