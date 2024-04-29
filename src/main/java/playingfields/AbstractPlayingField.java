@@ -142,6 +142,9 @@ public abstract class AbstractPlayingField {
 
                             deleteThreeInRow(i, j + 1);
                             count++;
+                        } else if (playingField[i][j].hasFourInSquare()) {
+                            deleteFourInSquare(i, j);
+                            count++;
                         }
 
                         deleteThreeInRow(i, j);
@@ -169,10 +172,33 @@ public abstract class AbstractPlayingField {
 
                             deleteThreeInColumn(i + 1, j);
                             count++;
+                        } else if (playingField[i][j].hasFourInSquare()) {
+                            deleteFourInSquare(i, j);
+                            count++;
                         }
 
                         deleteThreeInColumn(i, j);
                     } else {
+                        if (playingField[i + 1][j].hasThreeInRow()) {
+                            deleteThreeInRow(i + 1, j);
+                            count++;
+                        } else if (playingField[i + 1][j].hasThreeInColumn()) {
+                            deleteThreeInColumn(i + 1, j);
+                            count++;
+                        } else if (playingField[i + 1][j + 1].hasThreeInRow()) {
+                            deleteThreeInRow(i + 1, j + 1);
+                            count++;
+                        } else if (playingField[i + 1][j + 1].hasThreeInColumn()) {
+                            deleteThreeInColumn(i + 1, j + 1);
+                            count++;
+                        } else if (playingField[i][j + 1].hasThreeInRow()) {
+                            deleteThreeInRow(i, j + 1);
+                            count++;
+                        } else if (playingField[i][j + 1].hasThreeInColumn()) {
+                            deleteThreeInColumn(i, j + 1);
+                            count++;
+                        }
+
                         deleteFourInSquare(i, j);
                     }
 
