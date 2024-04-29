@@ -86,9 +86,8 @@ public abstract class AbstractPlayingField {
 
         for (int i = 1; i < rowsNum + 1; i++) {
             for (int j = 1; j < columnsNum + 1; j++) {
-                playingField[i][j].setTileNeighbors(playingField[i + 1][j - 1], playingField[i + 1][j],
-                        playingField[i + 1][j + 1], playingField[i][j - 1], playingField[i][j + 1],
-                        playingField[i - 1][j - 1], playingField[i - 1][j], playingField[i - 1][j + 1]);
+                playingField[i][j].setTileNeighbors(playingField[i + 1][j], playingField[i + 1][j + 1],
+                        playingField[i][j - 1], playingField[i][j + 1], playingField[i - 1][j]);
             }
         }
     }
@@ -226,11 +225,9 @@ public abstract class AbstractPlayingField {
     private void replaceMissingTile(int rowNum, int columnNum) {
         if (playingField[rowNum][columnNum].getTileType() == TileTypes.MISSING) {
             AbstractTile tile = new RegularTile(new TileCoordinates(rowNum, columnNum),
-                    new TileNeighbors(playingField[rowNum + 1][columnNum - 1], playingField[rowNum + 1][columnNum],
-                            playingField[rowNum + 1][columnNum + 1], playingField[rowNum][columnNum - 1],
-                            playingField[rowNum][columnNum + 1], playingField[rowNum - 1][columnNum - 1],
-                            playingField[rowNum - 1][columnNum], playingField[rowNum - 1][columnNum + 1]),
-                    randomColor());
+                    new TileNeighbors(playingField[rowNum + 1][columnNum], playingField[rowNum + 1][columnNum + 1],
+                            playingField[rowNum][columnNum - 1], playingField[rowNum][columnNum + 1],
+                            playingField[rowNum - 1][columnNum]), randomColor());
             playingField[rowNum][columnNum] = tile;
         }
     }

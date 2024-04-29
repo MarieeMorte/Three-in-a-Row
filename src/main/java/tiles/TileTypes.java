@@ -10,5 +10,5 @@ public enum TileTypes {
     GRAY,
     INDIGO,
     RED,
-    YELLOW,
+    YELLOW
 }
