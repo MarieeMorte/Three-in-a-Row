@@ -29,8 +29,7 @@ public class Gameplay implements ActionListener {
     private static JLabel statusBar;
     private static boolean hasSelectedTile = false;
     private static final int MAGNIFICATION_FACTOR = 100;
-    private static final int SMALL_DELAY = 450;
-    private static final int BIG_DELAY = 500;
+    private static final int DELAY = 500;
 
     private Gameplay() {
         playingField = new SimplestPlayingField();
@@ -196,19 +195,19 @@ public class Gameplay implements ActionListener {
         @Override
         public Void doInBackground() throws Exception {
             redrawPlayingField();
-            Thread.sleep(BIG_DELAY);
+            Thread.sleep(DELAY);
 
             balance();
 
             while (playingField.hasMissingTiles()) {
                 playingField.fillingInTopRow();
                 redrawPlayingField();
-                Thread.sleep(SMALL_DELAY);
+                Thread.sleep(DELAY);
 
                 while (playingField.hasHangingTiles()) {
                     playingField.forceOfGravity();
                     redrawPlayingField();
-                    Thread.sleep(SMALL_DELAY);
+                    Thread.sleep(DELAY);
                 }
 
                 balance();
@@ -223,12 +222,12 @@ public class Gameplay implements ActionListener {
                 score += playingField.deleteReadyCombinations();
                 setStatus("Your score: " + score);
                 redrawPlayingField();
-                Thread.sleep(BIG_DELAY);
+                Thread.sleep(DELAY);
 
                 while (playingField.hasHangingTiles()) {
                     playingField.forceOfGravity();
                     redrawPlayingField();
-                    Thread.sleep(SMALL_DELAY);
+                    Thread.sleep(DELAY);
                 }
             }
         }
