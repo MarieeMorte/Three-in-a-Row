@@ -7,11 +7,11 @@ public abstract class AbstractTile {
     private TileNeighbors tileNeighbors;
     private final TileTypes tileType;
 
-    public AbstractTile(TileTypes tileType) {
+    protected AbstractTile(TileTypes tileType) {
         this.tileType = tileType;
     }
 
-    public AbstractTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
+    protected AbstractTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
         this.tileCoordinates = tileCoordinates;
         this.tileNeighbors = tileNeighbors;
         this.tileType = tileType;

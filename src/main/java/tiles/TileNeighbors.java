@@ -36,14 +36,14 @@ public class TileNeighbors {
         return bottom;
     }
 
-    public void copyFrom(TileNeighbors tileNeighbors) {
+    protected void copyFrom(TileNeighbors tileNeighbors) {
         top = tileNeighbors.top;
         left = tileNeighbors.left;
         right = tileNeighbors.right;
         bottom = tileNeighbors.bottom;
     }
 
-    public TileNeighbors copyTo() {
+    protected TileNeighbors copyTo() {
         return new TileNeighbors(top, left, right, bottom);
     }
 }
