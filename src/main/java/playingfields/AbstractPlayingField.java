@@ -119,90 +119,68 @@ public abstract class AbstractPlayingField {
                     if (playingField[i][j].hasThreeInRow()) {
                         if (playingField[i + 1][j - 1] instanceof RegularTile
                                 && playingField[i + 1][j - 1].hasThreeInColumn()) {
-                            deleteThreeInColumn(i + 1, j - 1);
-                            count++;
+                            count += deleteThreeInColumn(i + 1, j - 1);
                         } else if (playingField[i + 1][j] instanceof RegularTile
                                 && playingField[i + 1][j].hasThreeInColumn()) {
-                            deleteThreeInColumn(i + 1, j);
-                            count++;
+                            count += deleteThreeInColumn(i + 1, j);
                         } else if (playingField[i + 1][j + 1] instanceof RegularTile
                                 && playingField[i + 1][j + 1].hasThreeInColumn()) {
-                            deleteThreeInColumn(i + 1, j + 1);
+                            count += deleteThreeInColumn(i + 1, j + 1);
                         } else if (playingField[i][j].hasThreeInColumn()) {
-                            deleteThreeInColumn(i, j);
-                            count++;
+                            count += deleteThreeInColumn(i, j);
                         } else if (playingField[i][j + 1].hasThreeInColumn()) {
-                            deleteThreeInColumn(i, j + 1);
-                            count++;
+                            count += deleteThreeInColumn(i, j + 1);
                         } else if (playingField[i][j + 1].hasThreeInRow()) {
                             if (playingField[i][j + 2].hasThreeInRow()) {
-                                deleteThreeInRow(i, j + 2);
-                                count++;
+                                count += deleteThreeInRow(i, j + 2);
                             }
 
-                            deleteThreeInRow(i, j + 1);
-                            count++;
+                            count += deleteThreeInRow(i, j + 1);
                         } else if (playingField[i][j].hasFourInSquare()) {
-                            deleteFourInSquare(i, j);
-                            count++;
+                            count += deleteFourInSquare(i, j);
                         }
 
-                        deleteThreeInRow(i, j);
+                        count += deleteThreeInRow(i, j);
                     } else if (playingField[i][j].hasThreeInColumn()) {
                         if (playingField[i + 1][j - 1] instanceof RegularTile
                                 && playingField[i + 1][j - 1].hasThreeInRow()) {
-                            deleteThreeInRow(i + 1, j - 1);
-                            count++;
+                            count += deleteThreeInRow(i + 1, j - 1);
                         } else if (playingField[i + 1][j].hasThreeInRow()) {
-                            deleteThreeInRow(i + 1, j);
-                            count++;
+                            count += deleteThreeInRow(i + 1, j);
                         } else if (playingField[i + 1][j + 1] instanceof RegularTile
                                 && playingField[i + 1][j + 1].hasThreeInRow()) {
-                            deleteThreeInRow(i + 1, j + 1);
-                            count++;
+                            count += deleteThreeInRow(i + 1, j + 1);
                         } else if (playingField[i][j + 1] instanceof RegularTile
                                 && playingField[i][j + 1].hasThreeInRow()) {
-                            deleteThreeInRow(i, j + 1);
-                            count++;
+                            count += deleteThreeInRow(i, j + 1);
                         } else if (playingField[i + 1][j].hasThreeInColumn()) {
                             if (playingField[i + 2][j].hasThreeInColumn()) {
-                                deleteThreeInColumn(i + 2, j);
-                                count++;
+                                count += deleteThreeInColumn(i + 2, j);
                             }
 
-                            deleteThreeInColumn(i + 1, j);
-                            count++;
+                            count += deleteThreeInColumn(i + 1, j);
                         } else if (playingField[i][j].hasFourInSquare()) {
-                            deleteFourInSquare(i, j);
-                            count++;
+                            count += deleteFourInSquare(i, j);
                         }
 
-                        deleteThreeInColumn(i, j);
+                        count += deleteThreeInColumn(i, j);
                     } else {
                         if (playingField[i + 1][j].hasThreeInRow()) {
-                            deleteThreeInRow(i + 1, j);
-                            count++;
+                            count += deleteThreeInRow(i + 1, j);
                         } else if (playingField[i + 1][j].hasThreeInColumn()) {
-                            deleteThreeInColumn(i + 1, j);
-                            count++;
+                            count += deleteThreeInColumn(i + 1, j);
                         } else if (playingField[i + 1][j + 1].hasThreeInRow()) {
-                            deleteThreeInRow(i + 1, j + 1);
-                            count++;
+                            count += deleteThreeInRow(i + 1, j + 1);
                         } else if (playingField[i + 1][j + 1].hasThreeInColumn()) {
-                            deleteThreeInColumn(i + 1, j + 1);
-                            count++;
+                            count += deleteThreeInColumn(i + 1, j + 1);
                         } else if (playingField[i][j + 1].hasThreeInRow()) {
-                            deleteThreeInRow(i, j + 1);
-                            count++;
+                            count += deleteThreeInRow(i, j + 1);
                         } else if (playingField[i][j + 1].hasThreeInColumn()) {
-                            deleteThreeInColumn(i, j + 1);
-                            count++;
+                            count += deleteThreeInColumn(i, j + 1);
                         }
 
-                        deleteFourInSquare(i, j);
+                        count += deleteFourInSquare(i, j);
                     }
-
-                    count++;
                 }
             }
         }
@@ -210,11 +188,13 @@ public abstract class AbstractPlayingField {
         return count;
     }
 
-    private void deleteThreeInRow(int i, int j) {
+    private int deleteThreeInRow(int i, int j) {
         replaceTile(playingField[i][j - 1], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j + 1], new MissingTile(TileTypes.MISSING));
         fillingOfNeighbors();
+
+        return 1;
     }
 
     private void replaceTile(AbstractTile replaceableTile, AbstractTile replacementTile) {
@@ -225,19 +205,23 @@ public abstract class AbstractPlayingField {
         replaceableTile.replaceBy(replacementTile);
     }
 
-    private void deleteThreeInColumn(int i, int j) {
+    private int deleteThreeInColumn(int i, int j) {
         replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i - 1][j], new MissingTile(TileTypes.MISSING));
         fillingOfNeighbors();
+
+        return 1;
     }
 
-    private void deleteFourInSquare(int i, int j) {
+    private int deleteFourInSquare(int i, int j) {
         replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i + 1][j + 1], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j + 1], new MissingTile(TileTypes.MISSING));
         fillingOfNeighbors();
+
+        return 1;
     }
 
     public void forceOfGravity() {
