@@ -134,6 +134,9 @@ public abstract class AbstractPlayingField {
                         } else if (playingField[i][j + 1].hasThreeInColumn()) {
                             deleteThreeInColumn(i, j + 1);
                             count++;
+                        } else if (playingField[i][j + 1].hasThreeInRow()) {
+                            deleteThreeInRow(i, j + 1);
+                            count++;
                         }
 
                         deleteThreeInRow(i, j);
@@ -152,6 +155,9 @@ public abstract class AbstractPlayingField {
                         } else if (playingField[i][j + 1] instanceof RegularTile
                                 && playingField[i][j + 1].hasThreeInRow()) {
                             deleteThreeInRow(i, j + 1);
+                            count++;
+                        } else if (playingField[i + 1][j].hasThreeInColumn()) {
+                            deleteThreeInColumn(i + 1, j);
                             count++;
                         }
 
