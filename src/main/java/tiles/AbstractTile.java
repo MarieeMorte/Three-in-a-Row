@@ -40,18 +40,33 @@ public abstract class AbstractTile {
     }
 
     public boolean hasThreeInRow() {
-        return this.tileType == this.tileNeighbors.getLeft().getTileType()
-                && this.tileType == this.tileNeighbors.getRight().getTileType();
+        return tileType == tileNeighbors.getLeft().getTileType() && tileType == tileNeighbors.getRight().getTileType();
     }
+
     public boolean hasThreeInColumn() {
-        return this.tileType == this.tileNeighbors.getTop().getTileType()
-                && this.tileType == this.tileNeighbors.getBottom().getTileType();
+        return tileType == tileNeighbors.getTop().getTileType() && tileType == tileNeighbors.getBottom().getTileType();
+    }
+
+    public boolean hasFourInRow() {
+        return hasThreeInRow() && tileNeighbors.getRight().hasThreeInRow();
+    }
+
+    public boolean hasFourInColumn() {
+        return hasThreeInColumn() && tileNeighbors.getTop().hasThreeInColumn();
+    }
+
+    public boolean hasFiveInRow() {
+        return hasFourInRow() && tileNeighbors.getRight().tileNeighbors.getRight().hasThreeInRow();
+    }
+
+    public boolean hasFiveInColumn() {
+        return hasFourInColumn() && tileNeighbors.getTop().tileNeighbors.getTop().hasThreeInColumn();
     }
 
     public boolean hasFourInSquare() {
-        return this.tileType == this.tileNeighbors.getTop().getTileType()
-                && this.tileType == this.tileNeighbors.getTopRight().getTileType()
-                && this.tileType == this.tileNeighbors.getRight().getTileType();
+        return tileType == tileNeighbors.getTop().getTileType()
+                && tileType == tileNeighbors.getTopRight().getTileType()
+                && tileType == tileNeighbors.getRight().getTileType();
     }
 
     public void replaceBy(AbstractTile replacementTile) {
