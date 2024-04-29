@@ -25,8 +25,10 @@ public abstract class AbstractTile {
         return tileCoordinates;
     }
 
-    public void setTileNeighbors(AbstractTile top, AbstractTile left, AbstractTile right, AbstractTile bottom) {
-        tileNeighbors = new TileNeighbors(top, left, right, bottom);
+    public void setTileNeighbors(
+            AbstractTile topLeft, AbstractTile top, AbstractTile topRight, AbstractTile left,
+            AbstractTile right, AbstractTile bottomLeft, AbstractTile bottom, AbstractTile bottomRight) {
+        tileNeighbors = new TileNeighbors(topLeft, top, topRight, left, right, bottomLeft, bottom, bottomRight);
     }
 
     public TileTypes getTileType() {
