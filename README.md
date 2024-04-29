@@ -7,9 +7,10 @@ Three-in-a-Row is a genre of computer games. Games of this genre are characteriz
 consists of a table or grid of elements, and the player's task is to manipulate the elements in such a way that the
 template combinations set by the game match, and after fulfilling the condition, the collected elements disappear.
 
-At the moment, this project is the simplest Three-in-a-Row game, in which there is only one playing field, and the
-only template combinations are the Three-in-a-Row combination and the Three-in-a-Column combination. However, in the
-future I plan to develop this project, add levels, new combinations, and more.
+At the moment, this project is a simple Three-in-a-Row game, in which there is only one playing field, but there are 
+many game combinations - "Three/four/five-in-a-row", "Three/four/five-in-a-column", "Four-in-a-square" and all 
+possible combinations of them. In the future, I plan to develop this project, add training, levels, tools, and improve 
+the frontend
 
 ### Software Requirements
 
