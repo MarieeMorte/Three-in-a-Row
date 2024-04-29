@@ -15,10 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
-
 import playingfields.SimplestPlayingField;
 
-public class Gameplay implements ActionListener {
+public final class Gameplay implements ActionListener {
     static SimplestPlayingField playingField;
     private static int rowsNum;
     private static int columnsNum;

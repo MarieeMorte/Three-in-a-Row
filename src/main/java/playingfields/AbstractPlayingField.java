@@ -2,8 +2,8 @@ package playingfields;
 
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import javax.swing.ImageIcon;
-
 import tiles.AbstractTile;
 import tiles.MissingTile;
 import tiles.RegularTile;
@@ -111,7 +111,7 @@ public abstract class AbstractPlayingField {
         int rowsNum = getRowsNum();
         int columnsNum = getColumnsNum();
 
-        HashSet<TileCoordinates> tilesToDelete = new HashSet<>(rowsNum * columnsNum);
+        Set<TileCoordinates> tilesToDelete = new HashSet<>(rowsNum * columnsNum);
         int count = 0;
 
         for (int i = 1; i < rowsNum + 1; i++) {
