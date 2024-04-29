@@ -185,6 +185,8 @@ public abstract class AbstractPlayingField {
 
                         count += deleteFourInSquare(i, j);
                     }
+
+                    fillingOfNeighbors();
                 }
             }
         }
@@ -196,7 +198,6 @@ public abstract class AbstractPlayingField {
         replaceTile(playingField[i][j - 1], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j + 1], new MissingTile(TileTypes.MISSING));
-        fillingOfNeighbors();
 
         return 1;
     }
@@ -213,7 +214,6 @@ public abstract class AbstractPlayingField {
         replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i - 1][j], new MissingTile(TileTypes.MISSING));
-        fillingOfNeighbors();
 
         return 1;
     }
@@ -221,7 +221,6 @@ public abstract class AbstractPlayingField {
     private int deleteFourInRow(int i, int j) {
         deleteThreeInRow(i, j);
         replaceTile(playingField[i][j + 2], new MissingTile(TileTypes.MISSING));
-        fillingOfNeighbors();
 
         return 2;
     }
@@ -229,7 +228,6 @@ public abstract class AbstractPlayingField {
     private int deleteFourInColumn(int i, int j) {
         deleteThreeInColumn(i, j);
         replaceTile(playingField[i + 2][j], new MissingTile(TileTypes.MISSING));
-        fillingOfNeighbors();
 
         return 2;
     }
@@ -237,7 +235,6 @@ public abstract class AbstractPlayingField {
     private int deleteFiveInRow(int i, int j) {
         deleteFourInRow(i, j);
         replaceTile(playingField[i][j + 3], new MissingTile(TileTypes.MISSING));
-        fillingOfNeighbors();
 
         return 3;
     }
@@ -245,7 +242,6 @@ public abstract class AbstractPlayingField {
     private int deleteFiveInColumn(int i, int j) {
         deleteFourInColumn(i, j);
         replaceTile(playingField[i + 3][j], new MissingTile(TileTypes.MISSING));
-        fillingOfNeighbors();
 
         return 3;
     }
@@ -255,7 +251,6 @@ public abstract class AbstractPlayingField {
         replaceTile(playingField[i + 1][j + 1], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
         replaceTile(playingField[i][j + 1], new MissingTile(TileTypes.MISSING));
-        fillingOfNeighbors();
 
         return 1;
     }
