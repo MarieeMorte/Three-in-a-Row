@@ -1,5 +1,6 @@
 package playingfields;
 
+import java.util.HashSet;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
@@ -111,95 +112,48 @@ public abstract class AbstractPlayingField {
         int rowsNum = getRowsNum();
         int columnsNum = getColumnsNum();
 
+        HashSet<TileCoordinates> tilesToDelete = new HashSet<>(rowsNum * columnsNum);
         int count = 0;
 
         for (int i = 1; i < rowsNum + 1; i++) {
             for (int j = 1; j < columnsNum + 1; j++) {
                 if (playingField[i][j] instanceof RegularTile && playingField[i][j].hasReadyCombination()) {
                     if (playingField[i][j].hasThreeInRow()) {
-                        if (playingField[i][j].hasFourInRow()) {
-                            if (playingField[i][j].hasFiveInRow()) {
-                                count += deleteFiveInRow(i, j);
-                            } else {
-                                count += deleteFourInRow(i, j);
-                            }
-                        } else {
-                            if (playingField[i + 1][j - 1] instanceof RegularTile
-                                    && playingField[i + 1][j - 1].hasThreeInColumn()) {
-                                count += deleteThreeInColumn(i + 1, j - 1);
-                            } else if (playingField[i + 1][j] instanceof RegularTile
-                                    && playingField[i + 1][j].hasThreeInColumn()) {
-                                count += deleteThreeInColumn(i + 1, j);
-                            } else if (playingField[i + 1][j + 1] instanceof RegularTile
-                                    && playingField[i + 1][j + 1].hasThreeInColumn()) {
-                                count += deleteThreeInColumn(i + 1, j + 1);
-                            } else if (playingField[i][j].hasThreeInColumn()) {
-                                count += deleteThreeInColumn(i, j);
-                            } else if (playingField[i][j + 1].hasThreeInColumn()) {
-                                count += deleteThreeInColumn(i, j + 1);
-                            } else if (playingField[i][j].hasFourInSquare()) {
-                                count += deleteFourInSquare(i, j);
-                            }
+                        tilesToDelete.add(playingField[i][j - 1].getTileCoordinates());
+                        tilesToDelete.add(playingField[i][j].getTileCoordinates());
+                        tilesToDelete.add(playingField[i][j + 1].getTileCoordinates());
 
-                            count += deleteThreeInRow(i, j);
-                        }
-                    } else if (playingField[i][j].hasThreeInColumn()) {
-                        if (playingField[i][j].hasFourInColumn()) {
-                            if (playingField[i][j].hasFiveInColumn()) {
-                                count += deleteFiveInColumn(i, j);
-                            } else {
-                                count += deleteFourInColumn(i, j);
-                            }
-                        } else {
-                            if (playingField[i + 1][j - 1] instanceof RegularTile
-                                    && playingField[i + 1][j - 1].hasThreeInRow()) {
-                                count += deleteThreeInRow(i + 1, j - 1);
-                            } else if (playingField[i + 1][j].hasThreeInRow()) {
-                                count += deleteThreeInRow(i + 1, j);
-                            } else if (playingField[i + 1][j + 1] instanceof RegularTile
-                                    && playingField[i + 1][j + 1].hasThreeInRow()) {
-                                count += deleteThreeInRow(i + 1, j + 1);
-                            } else if (playingField[i][j + 1] instanceof RegularTile
-                                    && playingField[i][j + 1].hasThreeInRow()) {
-                                count += deleteThreeInRow(i, j + 1);
-                            } else if (playingField[i][j].hasFourInSquare()) {
-                                count += deleteFourInSquare(i, j);
-                            }
-
-                            count += deleteThreeInColumn(i, j);
-                        }
-                    } else {
-                        if (playingField[i + 1][j].hasThreeInRow()) {
-                            count += deleteThreeInRow(i + 1, j);
-                        } else if (playingField[i + 1][j].hasThreeInColumn()) {
-                            count += deleteThreeInColumn(i + 1, j);
-                        } else if (playingField[i + 1][j + 1].hasThreeInRow()) {
-                            count += deleteThreeInRow(i + 1, j + 1);
-                        } else if (playingField[i + 1][j + 1].hasThreeInColumn()) {
-                            count += deleteThreeInColumn(i + 1, j + 1);
-                        } else if (playingField[i][j + 1].hasThreeInRow()) {
-                            count += deleteThreeInRow(i, j + 1);
-                        } else if (playingField[i][j + 1].hasThreeInColumn()) {
-                            count += deleteThreeInColumn(i, j + 1);
-                        }
-
-                        count += deleteFourInSquare(i, j);
+                        count++;
                     }
 
-                    fillingOfNeighbors();
+                    if (playingField[i][j].hasThreeInColumn()) {
+                        tilesToDelete.add(playingField[i + 1][j].getTileCoordinates());
+                        tilesToDelete.add(playingField[i][j].getTileCoordinates());
+                        tilesToDelete.add(playingField[i - 1][j].getTileCoordinates());
+
+                        count++;
+                    }
+
+                    if (playingField[i][j].hasFourInSquare()) {
+                        tilesToDelete.add(playingField[i + 1][j].getTileCoordinates());
+                        tilesToDelete.add(playingField[i + 1][j + 1].getTileCoordinates());
+                        tilesToDelete.add(playingField[i][j].getTileCoordinates());
+                        tilesToDelete.add(playingField[i][j + 1].getTileCoordinates());
+
+                        count++;
+                    }
                 }
             }
         }
 
+        for (TileCoordinates coordinates : tilesToDelete) {
+            replaceTile(playingField[coordinates.getRowNum()][coordinates.getColumnNum()],
+                    new MissingTile(TileTypes.MISSING));
+        }
+
+        fillingOfNeighbors();
+
         return count;
-    }
-
-    private int deleteThreeInRow(int i, int j) {
-        replaceTile(playingField[i][j - 1], new MissingTile(TileTypes.MISSING));
-        replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
-        replaceTile(playingField[i][j + 1], new MissingTile(TileTypes.MISSING));
-
-        return 1;
     }
 
     private void replaceTile(AbstractTile replaceableTile, AbstractTile replacementTile) {
@@ -208,51 +162,6 @@ public abstract class AbstractPlayingField {
 
         playingField[rowNum][columnNum] = replacementTile;
         replaceableTile.replaceBy(replacementTile);
-    }
-
-    private int deleteThreeInColumn(int i, int j) {
-        replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
-        replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
-        replaceTile(playingField[i - 1][j], new MissingTile(TileTypes.MISSING));
-
-        return 1;
-    }
-
-    private int deleteFourInRow(int i, int j) {
-        deleteThreeInRow(i, j);
-        replaceTile(playingField[i][j + 2], new MissingTile(TileTypes.MISSING));
-
-        return 2;
-    }
-
-    private int deleteFourInColumn(int i, int j) {
-        deleteThreeInColumn(i, j);
-        replaceTile(playingField[i + 2][j], new MissingTile(TileTypes.MISSING));
-
-        return 2;
-    }
-
-    private int deleteFiveInRow(int i, int j) {
-        deleteFourInRow(i, j);
-        replaceTile(playingField[i][j + 3], new MissingTile(TileTypes.MISSING));
-
-        return 3;
-    }
-
-    private int deleteFiveInColumn(int i, int j) {
-        deleteFourInColumn(i, j);
-        replaceTile(playingField[i + 3][j], new MissingTile(TileTypes.MISSING));
-
-        return 3;
-    }
-
-    private int deleteFourInSquare(int i, int j) {
-        replaceTile(playingField[i + 1][j], new MissingTile(TileTypes.MISSING));
-        replaceTile(playingField[i + 1][j + 1], new MissingTile(TileTypes.MISSING));
-        replaceTile(playingField[i][j], new MissingTile(TileTypes.MISSING));
-        replaceTile(playingField[i][j + 1], new MissingTile(TileTypes.MISSING));
-
-        return 1;
     }
 
     public void forceOfGravity() {

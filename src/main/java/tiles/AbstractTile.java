@@ -47,22 +47,6 @@ public abstract class AbstractTile {
         return tileType == tileNeighbors.getTop().getTileType() && tileType == tileNeighbors.getBottom().getTileType();
     }
 
-    public boolean hasFourInRow() {
-        return hasThreeInRow() && tileNeighbors.getRight().hasThreeInRow();
-    }
-
-    public boolean hasFourInColumn() {
-        return hasThreeInColumn() && tileNeighbors.getTop().hasThreeInColumn();
-    }
-
-    public boolean hasFiveInRow() {
-        return hasFourInRow() && tileNeighbors.getRight().tileNeighbors.getRight().hasThreeInRow();
-    }
-
-    public boolean hasFiveInColumn() {
-        return hasFourInColumn() && tileNeighbors.getTop().tileNeighbors.getTop().hasThreeInColumn();
-    }
-
     public boolean hasFourInSquare() {
         return tileType == tileNeighbors.getTop().getTileType()
                 && tileType == tileNeighbors.getTopRight().getTileType()
