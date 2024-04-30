@@ -1,3 +1,5 @@
+# Three-in-a-row
+
 ### Description of the project
 
 The project Three-in-a-Row Game for the subject "Programming technologies", 2024. The author of the project is Daria
@@ -32,7 +34,7 @@ cd target
 java -jar project-8-1.0-SNAPSHOT.jar
 ```
 
-#### or
+###### or
 
 ```cmd
 java -jar target/project-8-1.0-SNAPSHOT.jar
