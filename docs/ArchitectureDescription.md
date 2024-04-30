@@ -1,6 +1,6 @@
-### Architecture of the Three-in-a-Row Games project.
+# Architecture of the Three-in-a-Row Games project.
 
-##### Tiles package.
+### Tiles package.
 
 The tiles package contains classes describing game tiles.
 1. AbstractTile: This abstract class is the base for all tiles on the playing field. It was created for the convenience 
@@ -15,7 +15,7 @@ The tiles package contains classes describing game tiles.
 5. TileNeighbors: An auxiliary class that defines tile neighbors on the playing field. It is also widely used in other
    classes.
 
-##### The playingfields package.
+### The playingfields package.
 
 The playingfields package contains classes related to playing fields.
 1. AbstractPlayingField: This abstract class describes the main characteristics of the playing field. It provides a 
@@ -23,7 +23,7 @@ The playingfields package contains classes related to playing fields.
    types of playing fields.
 2. SimplestPlayingField: A class inherited from PlayingField, which is a simple 8x8 playing field.
 
-##### The gameplay package
+### The gameplay package
 
 The gameplay package contains the main class responsible for the gameplay.
 1. Gameplay: This class is a game controller. It simulates the gameplay of the game "Three-in-a-row", contains the 
