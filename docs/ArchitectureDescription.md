@@ -26,5 +26,5 @@ The playingfields package contains classes related to playing fields.
 ##### The gameplay package
 
 The gameplay package contains the main class responsible for the gameplay.
-1. Gameplay: This class is a game controller. It simulates the gameplay of the game "Three in a row", contains the 
+1. Gameplay: This class is a game controller. It simulates the gameplay of the game "Three-in-a-row", contains the 
    main frontend of the game
