@@ -1,31 +1,32 @@
 package tiles;
 
-// An abstract class describing the tiles on the playing field
-public abstract class Tile {
+import javax.swing.ImageIcon;
+
+public abstract class AbstractTile {
     private TileCoordinates tileCoordinates;
     private TileNeighbors tileNeighbors;
     private final TileTypes tileType;
 
-    public Tile(TileTypes tileType) {
+    public AbstractTile(TileTypes tileType) {
         this.tileType = tileType;
     }
 
-    public Tile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
+    public AbstractTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
         this.tileCoordinates = tileCoordinates;
         this.tileNeighbors = tileNeighbors;
         this.tileType = tileType;
     }
 
+    public abstract ImageIcon getUnselectedTileIcon();
+
+    public abstract ImageIcon getSelectedTileIcon();
+
     public TileCoordinates getTileCoordinates() {
         return tileCoordinates;
     }
 
-    public void setTileNeighbors(Tile top, Tile left, Tile right, Tile bottom) {
+    public void setTileNeighbors(AbstractTile top, AbstractTile left, AbstractTile right, AbstractTile bottom) {
         tileNeighbors = new TileNeighbors(top, left, right, bottom);
-    }
-
-    public TileNeighbors getTileNeighbors() {
-        return tileNeighbors;
     }
 
     public TileTypes getTileType() {
@@ -37,21 +38,21 @@ public abstract class Tile {
     }
 
     public boolean hasThreeInRow() {
-        return this.tileType == this.tileNeighbors.getLeft().getTileType() &&
-                this.tileType == this.tileNeighbors.getRight().getTileType();
+        return this.tileType == this.tileNeighbors.getLeft().getTileType()
+                && this.tileType == this.tileNeighbors.getRight().getTileType();
     }
 
     public boolean hasThreeInColumn() {
-        return this.tileType == this.tileNeighbors.getTop().getTileType() &&
-                this.tileType == this.tileNeighbors.getBottom().getTileType();
+        return this.tileType == this.tileNeighbors.getTop().getTileType()
+                && this.tileType == this.tileNeighbors.getBottom().getTileType();
     }
 
-    public void replaceBy(Tile replacementTile) {
+    public void replaceBy(AbstractTile replacementTile) {
         replacementTile.tileCoordinates = tileCoordinates.copyTo();
         replacementTile.tileNeighbors = tileNeighbors.copyTo();
     }
 
-    public void swap(Tile tile) {
+    public void swap(AbstractTile tile) {
         TileCoordinates tempTileCoordinates = this.tileCoordinates.copyTo();
         this.tileCoordinates.copyFrom(tile.tileCoordinates);
         tile.tileCoordinates.copyFrom(tempTileCoordinates);
@@ -60,6 +61,4 @@ public abstract class Tile {
         this.tileNeighbors.copyFrom(tile.tileNeighbors);
         tile.tileNeighbors.copyFrom(tempTileNeighbors);
     }
-
-    public abstract void show();
 }

@@ -1,26 +1,50 @@
 package tiles;
 
-public class RegularTile extends Tile {
+import java.util.Objects;
+import javax.swing.ImageIcon;
 
+public class RegularTile extends AbstractTile {
     public RegularTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, RegularTileTypes tileType) {
         super(tileCoordinates, tileNeighbors, tileType.getTileType());
     }
 
-    // Until the frontend stage has begun, the show() method looks like this for ease of perception
     @Override
-    public void show() {
-        TileTypes regularTileType = getTileType();
-        String formattedText;
+    public ImageIcon getUnselectedTileIcon() {
+        TileTypes tileType = getTileType();
 
-        switch (regularTileType) {
-            case BLUE -> formattedText = "\u001B[96m" + String.format("%12s", "blue") + "\u001B[0m";
-            case GREEN -> formattedText = "\u001B[32m" + String.format("%12s", "green") + "\u001B[0m";
-            case GREY -> formattedText = "\u001B[90m" + String.format("%12s", "grey") + "\u001B[0m";
-            case INDIGO -> formattedText = "\u001B[34m" + String.format("%12s", "indigo") + "\u001B[0m";
-            case RED -> formattedText = "\u001B[31m" + String.format("%12s", "red") + "\u001B[0m";
-            default -> formattedText = "\u001B[33m" + String.format("%12s", "yellow") + "\u001B[0m";
-        }
+        return switch (tileType) {
+            case BLUE -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/blue.png")));
+            case GREEN -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/green.png")));
+            case GRAY -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/gray.png")));
+            case INDIGO -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/indigo.png")));
+            case RED -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/red.png")));
+            default -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/yellow.png")));
+        };
+    }
 
-        System.out.print(formattedText);
+    @Override
+    public ImageIcon getSelectedTileIcon() {
+        TileTypes tileType = getTileType();
+
+        return switch (tileType) {
+            case BLUE -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/selectedTiles/blue.png")));
+            case GREEN -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/selectedTiles/green.png")));
+            case GRAY -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/selectedTiles/gray.png")));
+            case INDIGO -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/selectedTiles/indigo.png")));
+            case RED -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/selectedTiles/red.png")));
+            default -> new ImageIcon(
+                    Objects.requireNonNull(getClass().getResource("/icons/selectedTiles/yellow.png")));
+        };
     }
 }

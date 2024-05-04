@@ -7,7 +7,7 @@ public enum TileTypes {
     // Regular tiles
     BLUE,
     GREEN,
-    GREY,
+    GRAY,
     INDIGO,
     RED,
     YELLOW,

@@ -20,29 +20,30 @@ future I plan to develop this project, add levels, new combinations, and more.
 
 ### Commands to building the project
 
-##### If you agree to save this project to the local maven repository
-
 ```cmd
-- mvn clean install
-```
-
-##### If you don't agree to save this project to the local maven repository
-
-```cmd
-- mvn clean install -Dmaven.repo.local=path_directory_to_store_project_dependence
+mvn clean package
 ```
 
 ### Commands for run a project:
 
 ```cmd
-- cd target
-- java -jar project-8-1.0-SNAPSHOT.jar
+cd target
+java -jar project-8-1.0-SNAPSHOT.jar
+```
+
+#### or
+
+```cmd
+java -jar target/project-8-1.0-SNAPSHOT.jar
 ```
 
 ### Main links to parts of the project
 
+* [Documents](./docs)
 * [Architecture description](./docs/ArchitectureDescription.md)
 * [UML diagram](./docs/UML.png)
 * [Use case diagram](./docs/UseCaseDiagram.png)
+* [Code style](./rulesets/checkstyle.xml)
 * [Code](./src/main/java)
-
+* [Images](./src/main/resources/icons)
+* [Information about the configuration and details of the project](./pom.xml)

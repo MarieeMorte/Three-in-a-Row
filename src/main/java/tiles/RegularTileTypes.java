@@ -3,7 +3,7 @@ package tiles;
 public enum RegularTileTypes {
     BLUE(TileTypes.BLUE),
     GREEN(TileTypes.GREEN),
-    GREY(TileTypes.GREY),
+    GRAY(TileTypes.GRAY),
     INDIGO(TileTypes.INDIGO),
     RED(TileTypes.RED),
     YELLOW(TileTypes.YELLOW);

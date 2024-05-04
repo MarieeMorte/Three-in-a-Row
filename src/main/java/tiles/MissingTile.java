@@ -1,7 +1,9 @@
 package tiles;
 
-// Missing tile
-public class MissingTile extends Tile {
+import java.util.Objects;
+import javax.swing.ImageIcon;
+
+public class MissingTile extends AbstractTile {
 
     public MissingTile(TileTypes tileType) {
         super(tileType);
@@ -19,9 +21,15 @@ public class MissingTile extends Tile {
         }
     }
 
-    // Until the frontend stage has begun, the show() method looks like this for ease of perception
     @Override
-    public void show() {
-        System.out.printf("%12s", "");
+    public ImageIcon getUnselectedTileIcon() {
+        return new ImageIcon(
+                Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/missing.png")));
+    }
+
+    @Override
+    public ImageIcon getSelectedTileIcon() {
+        return new ImageIcon(
+                Objects.requireNonNull(getClass().getResource("/icons/unselectedTiles/missing.png")));
     }
 }
