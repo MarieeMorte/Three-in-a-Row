@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import javax.swing.ImageIcon;
-
 import tiles.AbstractTile;
 import tiles.MissingTile;
 import tiles.RegularTile;
