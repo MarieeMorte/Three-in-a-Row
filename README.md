@@ -44,6 +44,8 @@ java -jar target/project-8-1.0-SNAPSHOT.jar
 
 * [Documents](./docs)
 * [Architecture description](./docs/ArchitectureDescription.md)
+* [Java features used in the project](./docs/features.md)
+* [Programming patterns used in the project](./docs/patterns.md)
 * [UML diagram](./docs/UML.png)
 * [Use case diagram](./docs/UseCaseDiagram.png)
 * [Code style](./rulesets/checkstyle.xml)
