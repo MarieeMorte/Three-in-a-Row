@@ -25,7 +25,6 @@ public abstract class AbstractPlayingField {
         playingField = new AbstractTile[rowsNum + 2][columnsNum + 2];
 
         primaryFillingOfPlayingField();
-        fillingOfNeighbors();
 
         while (hasReadyCombinations()) {
             deleteReadyCombinations();
@@ -65,6 +64,8 @@ public abstract class AbstractPlayingField {
                 }
             }
         }
+
+        fillingOfNeighbors();
     }
 
     private RegularTileTypes randomColor() {
