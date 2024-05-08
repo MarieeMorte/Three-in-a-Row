@@ -228,9 +228,7 @@ public abstract class AbstractPlayingField {
         if (playingField[rowNum][columnNum].getTileType() == TileTypes.MISSING) {
             AbstractTile tile = new RegularTile(new TileCoordinates(rowNum, columnNum),
                     new TileNeighbors(), randomColor());
-            tile.setTileNeighbors(playingField[rowNum + 1][columnNum], playingField[rowNum + 1][columnNum + 1],
-                    playingField[rowNum][columnNum - 1], playingField[rowNum][columnNum + 1],
-                    playingField[rowNum - 1][columnNum]);
+            tile.getTileNeighbors().copyFrom(playingField[rowNum][columnNum].getTileNeighbors());
             playingField[rowNum][columnNum] = tile;
         }
     }

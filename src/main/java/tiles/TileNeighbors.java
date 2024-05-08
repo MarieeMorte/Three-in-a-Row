@@ -44,7 +44,7 @@ public class TileNeighbors {
         return bottom;
     }
 
-    protected void copyFrom(TileNeighbors tileNeighbors) {
+    public void copyFrom(TileNeighbors tileNeighbors) {
         top = tileNeighbors.top;
         topRight = tileNeighbors.topRight;
         left = tileNeighbors.left;
