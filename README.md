@@ -31,13 +31,13 @@ mvn clean package
 
 ```cmd
 cd target
-java -jar project-8-1.0-SNAPSHOT.jar
+java -jar project-8-1.0.0.jar
 ```
 
 ###### or
 
 ```cmd
-java -jar target/project-8-1.0-SNAPSHOT.jar
+java -jar target/project-8-1.0.0.jar
 ```
 
 ### Main links to parts of the project

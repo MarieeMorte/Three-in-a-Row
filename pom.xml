@@ -10,9 +10,9 @@
 
     <name>Three-in-a-Row</name>
 
-    <description> This project is a simple Three-in-a-Row game, in which there is only one playing field, but there
-        are many game combinations - "Three/four/five-in-a-row", "Three/four/five-in-a-column", "Four-in-a-square" and
-        all possible combinations of them.
+    <description>
+        It is a simple Three-in-a-Row game, in which there is only one playing field, but there are many
+        game combinations.
     </description>
 
     <developers>
