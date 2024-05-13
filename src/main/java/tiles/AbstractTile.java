@@ -7,11 +7,11 @@ public abstract class AbstractTile {
     private TileNeighbors tileNeighbors;
     private final TileTypes tileType;
 
-    public AbstractTile(TileTypes tileType) {
+    protected AbstractTile(TileTypes tileType) {
         this.tileType = tileType;
     }
 
-    public AbstractTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
+    protected AbstractTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, TileTypes tileType) {
         this.tileCoordinates = tileCoordinates;
         this.tileNeighbors = tileNeighbors;
         this.tileType = tileType;
@@ -25,8 +25,13 @@ public abstract class AbstractTile {
         return tileCoordinates;
     }
 
-    public void setTileNeighbors(AbstractTile top, AbstractTile left, AbstractTile right, AbstractTile bottom) {
-        tileNeighbors = new TileNeighbors(top, left, right, bottom);
+    public TileNeighbors getTileNeighbors() {
+        return tileNeighbors;
+    }
+
+    public void setTileNeighbors(
+            AbstractTile top, AbstractTile topRight, AbstractTile left, AbstractTile right, AbstractTile bottom) {
+        tileNeighbors = new TileNeighbors(top, topRight, left, right, bottom);
     }
 
     public TileTypes getTileType() {
@@ -34,17 +39,21 @@ public abstract class AbstractTile {
     }
 
     public boolean hasReadyCombination() {
-        return hasThreeInRow() || hasThreeInColumn();
+        return hasThreeInRow() || hasThreeInColumn() || hasFourInSquare();
     }
 
     public boolean hasThreeInRow() {
-        return this.tileType == this.tileNeighbors.getLeft().getTileType()
-                && this.tileType == this.tileNeighbors.getRight().getTileType();
+        return tileType == tileNeighbors.getLeft().getTileType() && tileType == tileNeighbors.getRight().getTileType();
     }
 
     public boolean hasThreeInColumn() {
-        return this.tileType == this.tileNeighbors.getTop().getTileType()
-                && this.tileType == this.tileNeighbors.getBottom().getTileType();
+        return tileType == tileNeighbors.getTop().getTileType() && tileType == tileNeighbors.getBottom().getTileType();
+    }
+
+    public boolean hasFourInSquare() {
+        return tileType == tileNeighbors.getTop().getTileType()
+                && tileType == tileNeighbors.getTopRight().getTileType()
+                && tileType == tileNeighbors.getRight().getTileType();
     }
 
     public void replaceBy(AbstractTile replacementTile) {

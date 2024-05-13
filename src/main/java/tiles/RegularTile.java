@@ -4,8 +4,13 @@ import java.util.Objects;
 import javax.swing.ImageIcon;
 
 public class RegularTile extends AbstractTile {
-    public RegularTile(TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, RegularTileTypes tileType) {
-        super(tileCoordinates, tileNeighbors, tileType.getTileType());
+    public RegularTile(RegularTileTypes regularTileType) {
+        super(regularTileType.getTileType());
+    }
+
+    public RegularTile(
+            TileCoordinates tileCoordinates, TileNeighbors tileNeighbors, RegularTileTypes regularTileType) {
+        super(tileCoordinates, tileNeighbors, regularTileType.getTileType());
     }
 
     @Override

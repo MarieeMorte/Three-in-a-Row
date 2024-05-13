@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 import playingfields.SimplestPlayingField;
 
-public class Gameplay implements ActionListener {
+public final class Gameplay implements ActionListener {
     static SimplestPlayingField playingField;
     private static int rowsNum;
     private static int columnsNum;
@@ -28,10 +28,9 @@ public class Gameplay implements ActionListener {
     private static JLabel statusBar;
     private static boolean hasSelectedTile = false;
     private static final int MAGNIFICATION_FACTOR = 100;
-    private static final int SMALL_DELAY = 450;
-    private static final int BIG_DELAY = 500;
+    private static final int DELAY = 500;
 
-    public Gameplay() {
+    private Gameplay() {
         playingField = new SimplestPlayingField();
         rowsNum = playingField.getRowsNum();
         columnsNum = playingField.getColumnsNum();
@@ -120,16 +119,16 @@ public class Gameplay implements ActionListener {
         }
     }
 
-    public static void setStatus(String string) {
+    private static void setStatus(String string) {
         statusBar.setText(string);
     }
 
-    public void reset() {
+    private void reset() {
         playingField = new SimplestPlayingField();
         redrawPlayingField();
     }
 
-    public static void redrawPlayingField() {
+    private static void redrawPlayingField() {
         for (int i = 0; i < rowsNum; i++) {
             for (int j = 0; j < columnsNum; j++) {
                 playingFieldButtons[i][j].setIcon(playingField.getUnselectedTileIcon(rowsNum - i, j + 1));
@@ -137,7 +136,7 @@ public class Gameplay implements ActionListener {
         }
     }
 
-    public void swap(int rowNum, int columnNum) {
+    private void swap(int rowNum, int columnNum) {
         if (!hasSelectedTile) {
             hasSelectedTile = true;
             playingFieldButtons[rowNum][columnNum].setIcon(
@@ -187,27 +186,27 @@ public class Gameplay implements ActionListener {
         new Gameplay();
     }
 
-    public static class GameplaySwingWorker extends SwingWorker<Void, Void> {
+    private static class GameplaySwingWorker extends SwingWorker<Void, Void> {
         GameplaySwingWorker() {
             super();
         }
 
         @Override
-        protected Void doInBackground() throws Exception {
+        public Void doInBackground() throws Exception {
             redrawPlayingField();
-            Thread.sleep(BIG_DELAY);
+            Thread.sleep(DELAY);
 
             balance();
 
             while (playingField.hasMissingTiles()) {
                 playingField.fillingInTopRow();
                 redrawPlayingField();
-                Thread.sleep(SMALL_DELAY);
+                Thread.sleep(DELAY);
 
                 while (playingField.hasHangingTiles()) {
                     playingField.forceOfGravity();
                     redrawPlayingField();
-                    Thread.sleep(SMALL_DELAY);
+                    Thread.sleep(DELAY);
                 }
 
                 balance();
@@ -222,12 +221,12 @@ public class Gameplay implements ActionListener {
                 score += playingField.deleteReadyCombinations();
                 setStatus("Your score: " + score);
                 redrawPlayingField();
-                Thread.sleep(BIG_DELAY);
+                Thread.sleep(DELAY);
 
                 while (playingField.hasHangingTiles()) {
                     playingField.forceOfGravity();
                     redrawPlayingField();
-                    Thread.sleep(SMALL_DELAY);
+                    Thread.sleep(DELAY);
                 }
             }
         }

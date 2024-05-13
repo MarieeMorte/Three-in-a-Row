@@ -24,12 +24,12 @@ public class TileCoordinates {
         return columnNum;
     }
 
-    public void copyFrom(TileCoordinates tileCoordinates) {
+    protected void copyFrom(TileCoordinates tileCoordinates) {
         rowNum = tileCoordinates.getRowNum();
         columnNum = tileCoordinates.getColumnNum();
     }
 
-    public TileCoordinates copyTo() {
+    protected TileCoordinates copyTo() {
         return new TileCoordinates(rowNum, columnNum);
     }
 }

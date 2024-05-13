@@ -1,3 +1,5 @@
+# Three-in-a-row
+
 ### Description of the project
 
 The project Three-in-a-Row Game for the subject "Programming technologies", 2024. The author of the project is Daria
@@ -7,9 +9,10 @@ Three-in-a-Row is a genre of computer games. Games of this genre are characteriz
 consists of a table or grid of elements, and the player's task is to manipulate the elements in such a way that the
 template combinations set by the game match, and after fulfilling the condition, the collected elements disappear.
 
-At the moment, this project is the simplest Three-in-a-Row game, in which there is only one playing field, and the
-only template combinations are the Three-in-a-Row combination and the Three-in-a-Column combination. However, in the
-future I plan to develop this project, add levels, new combinations, and more.
+At the moment, this project is a simple Three-in-a-Row game, in which there is only one playing field, but there are 
+many game combinations - "Three/four/five-in-a-row", "Three/four/five-in-a-column", "Four-in-a-square" and all 
+possible combinations of them. In the future, I plan to develop this project, add training, levels, tools, and improve 
+the frontend
 
 ### Software Requirements
 
@@ -28,19 +31,21 @@ mvn clean package
 
 ```cmd
 cd target
-java -jar project-8-1.0-SNAPSHOT.jar
+java -jar project-8-1.0.0.jar
 ```
 
-#### or
+###### or
 
 ```cmd
-java -jar target/project-8-1.0-SNAPSHOT.jar
+java -jar target/project-8-1.0.0.jar
 ```
 
 ### Main links to parts of the project
 
 * [Documents](./docs)
 * [Architecture description](./docs/ArchitectureDescription.md)
+* [Java features used in the project](./docs/features.md)
+* [Programming patterns used in the project](./docs/patterns.md)
 * [UML diagram](./docs/UML.png)
 * [Use case diagram](./docs/UseCaseDiagram.png)
 * [Code style](./rulesets/checkstyle.xml)
