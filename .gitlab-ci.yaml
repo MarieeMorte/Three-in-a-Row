@@ -1,0 +1,21 @@
+image: maven:latest
+
+stages:
+  - lint
+  - build
+
+lint:
+  stage: lint
+  script:
+    - mvn clean checkstyle:check
+  artifacts:
+    paths:
+      - target/checkstyle-result.xml
+
+build:
+  stage: build
+  script:
+    - mvn package
+  artifacts:
+    paths:
+      - target/project-8-1.0.0.jar
