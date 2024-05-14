@@ -8,9 +8,6 @@ lint:
   stage: lint
   script:
     - mvn clean checkstyle:check
-  artifacts:
-    paths:
-      - target/checkstyle-result.xml
 
 build:
   stage: build
