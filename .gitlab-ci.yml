@@ -1,11 +1,5 @@
 image: maven:latest
 
-variables:
-  SHELL: "pwsh"
-
-before_script:
-  - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0"
-
 stages:
   - lint
   - build
