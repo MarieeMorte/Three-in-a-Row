@@ -3,6 +3,7 @@ image: maven:latest
 stages:
   - lint
   - build
+  - release
 
 lint:
   stage: lint
@@ -14,6 +15,14 @@ build:
   script:
     - mvn package
     - ren target/project-8-1.0.0.jar Three-in-a-Row.jar
+  artifacts:
+    paths:
+      - target/Three-in-a-Row.jar
+
+release:
+  stage: release
+  script:
+    - echo "Release"
   artifacts:
     paths:
       - target/Three-in-a-Row.jar
