@@ -13,7 +13,7 @@ build:
   stage: build
   script:
     - mvn package
-    - ren target\project-8-1.0.0.jar Three-in-a-Row.jar
+    - ren target/project-8-1.0.0.jar Three-in-a-Row.jar
   artifacts:
     paths:
-      - target\Three-in-a-Row.jar
+      - target/Three-in-a-Row.jar
